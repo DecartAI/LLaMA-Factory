@@ -131,11 +131,7 @@ def convert_sharegpt(
 
         aligned_messages = []
         broken_data = False
-        for turn_idx, message in enumerate(messages):
-            if message[dataset_attr.role_tag] not in accept_tags[turn_idx % 2]:
-                logger.warning("Invalid role tag in {}.".format(messages))
-                broken_data = True
-
+        for message in messages:
             aligned_messages.append(
                 {"role": tag_mapping[message[dataset_attr.role_tag]], "content": message[dataset_attr.content_tag]}
             )
