@@ -550,5 +550,20 @@
       "prompt": "content"
     },
     "folder": "python"
+  },
+  "kto_figgs": {
+    "file_name": "kto_figgs.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages",
+      "kto_tag": "label"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant",
+      "system_tag": "system"
+    }
   }
 }
