@@ -103,7 +103,7 @@ def preprocess_feedback_dataset(
             model_inputs["kl_token_type_ids"] = []
 
     for i in range(len(examples["prompt"])):
-        if len(examples["prompt"][i]) % 2 != 1 or len(examples["response"][i]) < 2:
+        if len(examples["response"][i]) < 2:
             logger.warning("Dropped invalid example: {}".format(examples["prompt"][i] + examples["response"][i]))
             continue
 

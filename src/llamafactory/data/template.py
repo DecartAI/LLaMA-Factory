@@ -115,8 +115,14 @@ class Template:
                 elements += self.format_separator.apply()
 
             if message["role"] == Role.USER.value:
-                elements += self.format_user.apply(content=message["content"], idx=str(i // 2))
+                elements += self.format_user.apply(content=message["content"])
             elif message["role"] == Role.ASSISTANT.value:
+                if (
+                    i == 0 and len(messages) % 2 != 0
+                ):  # For some unknown reason assistant first is not supported, this is a patch that solves it
+                    encoded_messages.append(self._convert_elements_to_ids(tokenizer, elements))
+                    elements.clear()
+                    elements += "<|start_header_id|>assistant<|end_header_id|>\n\n"  # Prefix of assistant is the user's postfix :(
                 elements += self.format_assistant.apply(content=message["content"])
             elif message["role"] == Role.OBSERVATION.value:
                 elements += self.format_observation.apply(content=message["content"])
@@ -162,6 +168,7 @@ class Template:
         total_length = 0
         for i in range(0, len(encoded_messages), 2):
             if total_length >= cutoff_len:
+                logger.error("Some content was longer than cutoff len")
                 break
 
             max_source_len, max_target_len = infer_max_len(
