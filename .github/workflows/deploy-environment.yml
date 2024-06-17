@@ -10,7 +10,7 @@ concurrency:
 jobs:
   build-llama-factory:
     name: "Build llama-factory"
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
