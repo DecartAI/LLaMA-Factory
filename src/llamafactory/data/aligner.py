@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 import os
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, List, Union
@@ -120,6 +121,8 @@ def convert_sharegpt(
     even_tags = (dataset_attr.assistant_tag, dataset_attr.function_tag)
     accept_tags = (odd_tags, even_tags)
     for i, messages in enumerate(examples[dataset_attr.messages]):
+        if isinstance(messages,bytes):
+            messages = json.loads(messages)
         if dataset_attr.system_tag and messages[0][dataset_attr.role_tag] == dataset_attr.system_tag:
             system = messages[0][dataset_attr.content_tag]
             messages = messages[1:]

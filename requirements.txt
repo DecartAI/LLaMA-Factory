@@ -9,7 +9,7 @@ scipy
 einops
 sentencepiece
 tiktoken
-protobuf
+protobuf==3.20.3
 uvicorn
 pydantic
 fastapi
