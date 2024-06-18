@@ -11,8 +11,9 @@ pref_beta: 0.1
 ### dataset
 dataset: kto_figgs
 template: llama3
-cutoff_len: 1024
-max_samples: 1000
+# 3.9 * 8000
+cutoff_len: 31200
+max_samples: 73000
 overwrite_cache: true
 preprocessing_num_workers: 16
 

@@ -3,7 +3,6 @@
 .github
 .venv
 cache
-data
 hf_cache
 output
 examples
